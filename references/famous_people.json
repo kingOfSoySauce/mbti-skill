@@ -1,0 +1,408 @@
+{
+  "INTJ": [
+    {
+      "name": "Elon Musk",
+      "description": "Tech entrepreneur and CEO of Tesla/SpaceX.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/elon-musk",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTJ",
+      "domain": "Tech"
+    },
+    {
+      "name": "Nikocado Avocado",
+      "description": "YouTube content creator known for mukbang videos.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/nikocado-avocado",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTJ",
+      "domain": "YouTube/Internet"
+    },
+    {
+      "name": "Suga",
+      "description": "Rapper and producer in K-pop group BTS.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/suga",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTJ",
+      "domain": "Music"
+    },
+    {
+      "name": "Friedrich Nietzsche",
+      "description": "German philosopher and cultural critic.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/friedrich-nietzsche",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTJ",
+      "domain": "Philosophy"
+    },
+    {
+      "name": "Greta Thunberg",
+      "description": "Climate change activist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/greta-thunberg",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTJ",
+      "domain": "Politics"
+    },
+    {
+      "name": "Ludwig Van Beethoven",
+      "description": "Revolutionary classical composer.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/ludwig-van-beethoven",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTJ",
+      "domain": "Music"
+    }
+  ],
+  "INTP": [
+    {
+      "name": "Cr1TiKaL",
+      "description": "YouTube content creator known for commentary videos.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/charles-white-jr",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTP",
+      "domain": "YouTube/Internet"
+    },
+    {
+      "name": "Felix Kjellberg",
+      "description": "YouTube creator known as PewDiePie.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/felix-kjellberg",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTP",
+      "domain": "YouTube/Internet"
+    },
+    {
+      "name": "Bill Gates",
+      "description": "Microsoft co-founder and philanthropist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/bill-gates",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTP",
+      "domain": "Tech"
+    },
+    {
+      "name": "Jin (singer)",
+      "description": "Vocalist in K-pop group BTS.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jin",
+      "source": "stablecharacter.com",
+      "mbti_type": "INTP",
+      "domain": "Music"
+    }
+  ],
+  "ENTJ": [
+    {
+      "name": "Dream (YouTuber)",
+      "description": "Minecraft YouTuber and content creator.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/dream",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENTJ",
+      "domain": "YouTube/Internet"
+    },
+    {
+      "name": "Jenna Ortega",
+      "description": "Actress known for \"Wednesday\" series.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jenna-ortega",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENTJ",
+      "domain": "Film/TV"
+    },
+    {
+      "name": "Steve Jobs",
+      "description": "Co-founder of Apple and tech visionary.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/steve-jobs",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENTJ",
+      "domain": "Tech"
+    },
+    {
+      "name": "MrBeast",
+      "description": "YouTuber known for expensive stunts and philanthropy.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/mrbeast",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENTJ",
+      "domain": "YouTube/Internet"
+    }
+  ],
+  "ENTP": [
+    {
+      "name": "Barack Obama",
+      "description": "44th President of the United States (2009-2017).",
+      "detail_url": "https://www.stablecharacter.com/personality-database/barack-obama",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENTP",
+      "domain": "Politics"
+    },
+    {
+      "name": "Jisoo",
+      "description": "Member of K-pop girl group BLACKPINK.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jisoo",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENTP",
+      "domain": "Music"
+    }
+  ],
+  "INFJ": [
+    {
+      "name": "J. K. Rowling",
+      "description": "Author of the Harry Potter book series.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jk-rowling",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Literature"
+    },
+    {
+      "name": "Zendaya",
+      "description": "Actress and former Disney star turned acclaimed performer.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/zendaya",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Film/TV"
+    },
+    {
+      "name": "RM (musician)",
+      "description": "Leader and rapper of K-pop group BTS.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/rm",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Music"
+    },
+    {
+      "name": "Carl Jung",
+      "description": "Influential Swiss psychiatrist and psychoanalyst.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/carl-jung",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Psychology"
+    },
+    {
+      "name": "Jordan Peterson",
+      "description": "Canadian psychologist and author known for self-help lectures.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jordan-peterson",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Literature"
+    },
+    {
+      "name": "Osamu Dazai",
+      "description": "Influential Japanese novelist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/osamu-dazai",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Literature"
+    },
+    {
+      "name": "Fyodor Dostoyevsky",
+      "description": "Russian novelist known for psychological works.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/fyodor-dostoyevsky",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFJ",
+      "domain": "Literature"
+    }
+  ],
+  "INFP": [
+    {
+      "name": "Princess Diana",
+      "description": "British royal and humanitarian icon.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/princess-diana",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFP",
+      "domain": "History"
+    },
+    {
+      "name": "Johnny Depp",
+      "description": "Actor known for eccentric character roles.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/johnny-depp",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFP",
+      "domain": "Film/TV"
+    },
+    {
+      "name": "Melanie Martinez",
+      "description": "Singer-songwriter with dark pop aesthetics.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/melanie-martinez",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFP",
+      "domain": "Literature"
+    },
+    {
+      "name": "Mitski",
+      "description": "Japanese-American indie rock musician.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/mitski",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFP",
+      "domain": "Music"
+    },
+    {
+      "name": "Audrey Hepburn",
+      "description": "Classic Hollywood actress and UNICEF ambassador.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/audrey-hepburn",
+      "source": "stablecharacter.com",
+      "mbti_type": "INFP",
+      "domain": "Film/TV"
+    }
+  ],
+  "ENFJ": [
+    {
+      "name": "Harry Styles",
+      "description": "Former One Direction member turned solo artist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/harry-styles",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENFJ",
+      "domain": "Art"
+    },
+    {
+      "name": "Jimin",
+      "description": "Lead vocalist and main dancer of K-pop group BTS.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jimin",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENFJ",
+      "domain": "Music"
+    }
+  ],
+  "ENFP": [
+    {
+      "name": "Doja Cat",
+      "description": "Rapper/singer known for viral hits and online presence.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/doja-cat",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENFP",
+      "domain": "Music"
+    },
+    {
+      "name": "V (singer)",
+      "description": "Vocalist in K-pop group BTS.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/taehyung-v",
+      "source": "stablecharacter.com",
+      "mbti_type": "ENFP",
+      "domain": "Music"
+    }
+  ],
+  "ISTJ": [],
+  "ISFJ": [],
+  "ESTJ": [
+    {
+      "name": "Gordon Ramsay",
+      "description": "Celebrity chef and TV personality.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/gordon-ramsay",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESTJ",
+      "domain": "Other"
+    },
+    {
+      "name": "Ben Shapiro",
+      "description": "Conservative political commentator.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/ben-shapiro",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESTJ",
+      "domain": "Politics"
+    },
+    {
+      "name": "Emma Watson",
+      "description": "Actress known for Harry Potter series.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/emma-watson",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESTJ",
+      "domain": "Film/TV"
+    }
+  ],
+  "ESFJ": [
+    {
+      "name": "Ariana Grande",
+      "description": "Pop singer and former Nickelodeon actress.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/ariana-grande",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESFJ",
+      "domain": "Music"
+    },
+    {
+      "name": "Taylor Swift",
+      "description": "Award-winning pop/country music artist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/taylor-swift",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESFJ",
+      "domain": "Art"
+    }
+  ],
+  "ISTP": [
+    {
+      "name": "Vladimir Putin",
+      "description": "Russian president since 2000.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/vladimir-putin",
+      "source": "stablecharacter.com",
+      "mbti_type": "ISTP",
+      "domain": "Politics"
+    },
+    {
+      "name": "Eminem",
+      "description": "Influential rapper and hip-hop artist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/eminem",
+      "source": "stablecharacter.com",
+      "mbti_type": "ISTP",
+      "domain": "Music"
+    }
+  ],
+  "ISFP": [
+    {
+      "name": "Lady Gaga",
+      "description": "Pop star and actress known for avant-garde style.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/lady-gaga",
+      "source": "stablecharacter.com",
+      "mbti_type": "ISFP",
+      "domain": "Music"
+    },
+    {
+      "name": "Billie Eilish",
+      "description": "Grammy-winning alternative pop artist.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/billie-eilish",
+      "source": "stablecharacter.com",
+      "mbti_type": "ISFP",
+      "domain": "Art"
+    },
+    {
+      "name": "Lana Del Rey",
+      "description": "Singer-songwriter known for melancholic pop.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/lana-del-rey",
+      "source": "stablecharacter.com",
+      "mbti_type": "ISFP",
+      "domain": "Literature"
+    },
+    {
+      "name": "Jungkook",
+      "description": "Youngest member of K-pop group BTS.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/jungkook",
+      "source": "stablecharacter.com",
+      "mbti_type": "ISFP",
+      "domain": "Music"
+    }
+  ],
+  "ESTP": [
+    {
+      "name": "Andrew Tate",
+      "description": "Controversial social media influencer and former kickboxer.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/andrew-tate",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESTP",
+      "domain": "Sports"
+    },
+    {
+      "name": "Donald Trump",
+      "description": "45th and 47th U.S. President and business mogul.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/donald-trump",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESTP",
+      "domain": "Politics"
+    },
+    {
+      "name": "Zeus",
+      "description": "King of the Greek gods in mythology.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/zeus",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESTP",
+      "domain": "History"
+    }
+  ],
+  "ESFP": [
+    {
+      "name": "Cristiano Ronaldo",
+      "description": "Portuguese football player and global sports icon.",
+      "detail_url": "https://www.stablecharacter.com/personality-database/cristiano-ronaldo",
+      "source": "stablecharacter.com",
+      "mbti_type": "ESFP",
+      "domain": "Sports"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+.DS_Store
+.mbti-reports/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.crdownload

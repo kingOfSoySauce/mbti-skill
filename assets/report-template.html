@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>$page_title</title>
+    <style>
+$embedded_css
+    </style>
+  </head>
+  <body class="theme-$family_key">
+    <main class="page-shell">
+      <section class="hero-card">
+        <div class="hero-badge">$badge_svg</div>
+        <div class="hero-copy">
+          <p class="eyebrow">$family_label</p>
+          <h1>$type_code <span>$type_label</span></h1>
+          <p class="confidence">$confidence_label</p>
+          <p class="snapshot">$snapshot</p>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Preference Profile</h2>
+        <div class="dimension-grid">
+$dimension_cards
+        </div>
+      </section>
+
+      <section class="section-card prose-card">
+        <h2>Type Narrative</h2>
+        <div class="prose-block">$type_narrative</div>
+      </section>
+
+      <section class="section-card prose-card">
+        <h2>Function Validation</h2>
+        <div class="prose-block">$function_validation</div>
+      </section>
+
+      <section class="double-grid">
+        <section class="section-card">
+          <h2>Strengths</h2>
+          <div class="stack-list">$strength_cards</div>
+        </section>
+        <section class="section-card">
+          <h2>Blind Spots</h2>
+          <div class="stack-list">$blindspot_cards</div>
+        </section>
+      </section>
+
+      <section class="section-card">
+        <h2>Pressure and Decision Style</h2>
+        <div class="stack-list">$pressure_cards</div>
+      </section>
+
+      <section class="section-card">
+        <h2>Evidence Chain</h2>
+        <div class="stack-list">$evidence_cards</div>
+      </section>
+
+      <section class="section-card">
+        <h2>Why Not The Adjacent Type</h2>
+        <div class="stack-list">$adjacent_cards</div>
+      </section>
+
+      <section class="section-card">
+        <h2>Uncertainty and Follow-Up</h2>
+        <div class="stack-list">$uncertainty_cards</div>
+      </section>
+
+      <footer class="report-footer">
+        <p>$footer_note</p>
+      </footer>
+    </main>
+  </body>
+</html>
