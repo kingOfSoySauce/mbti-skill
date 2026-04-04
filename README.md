@@ -1,6 +1,6 @@
 # MBTI Skill
 
-An [OpenClaw](https://openclaw.dev) skill that infers your MBTI personality type from your authorized conversation history, memory, and workspace notes — no questionnaire required.
+An [OpenClaw](https://openclaw.ai/) skill that infers your MBTI personality type from your authorized conversation history, memory, and workspace notes — no questionnaire required.
 
 ## How It Works
 
@@ -20,7 +20,7 @@ Discover → Ingest → Evidence Pool → Inference → Report
 For other agents, paste this line:
 
 ```
-Install this skill: https://github.com/<owner>/<repo>/tree/main/skills/mbti, then analyze my MBTI.
+Install this skill and analyze my MBTI: https://github.com/kingOfSoySauce/mbti-skill
 ```
 
 Local development:
