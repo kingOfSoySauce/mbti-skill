@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="$html_lang">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,6 +9,24 @@ $embedded_css
     </style>
   </head>
   <body class="theme-$family_key">
+    <aside class="report-sidebar">
+      <div class="sidebar-brand">
+        <strong>$toolbar_title</strong>
+        <span>$toolbar_subtitle</span>
+      </div>
+      <div class="sidebar-jump">
+        <span class="sidebar-label">$jump_label</span>
+        <nav class="sidebar-nav" aria-label="$jump_label">
+$nav_links
+        </nav>
+      </div>
+      <div class="sidebar-actions">
+        <button type="button" class="action-button" data-action="download-html">$download_html</button>
+        <button type="button" class="action-button" data-action="export-pdf">$export_pdf</button>
+        <button type="button" class="action-button is-primary" data-action="share">$share_label</button>
+      </div>
+    </aside>
+
     <main class="page-shell">
       <section class="hero-card">
         <div class="hero-badge">$badge_svg</div>
@@ -20,51 +38,59 @@ $embedded_css
         </div>
       </section>
 
-      <section class="section-card">
-        <h2>Preference Profile</h2>
+      <section id="profile" class="section-card">
+        <h2>$section_profile</h2>
         <div class="dimension-grid">
 $dimension_cards
         </div>
       </section>
 
-      <section class="section-card prose-card">
-        <h2>Type Narrative</h2>
+      <section id="narrative" class="section-card prose-card">
+        <h2>$section_narrative</h2>
         <div class="prose-block">$type_narrative</div>
       </section>
 
-      <section class="section-card prose-card">
-        <h2>Function Validation</h2>
+      <section id="functions" class="section-card prose-card">
+        <h2>$section_functions</h2>
         <div class="prose-block">$function_validation</div>
       </section>
 
-      <section class="double-grid">
+      <section id="strengths" class="double-grid">
         <section class="section-card">
-          <h2>Strengths</h2>
+          <h2>$section_strengths</h2>
           <div class="stack-list">$strength_cards</div>
         </section>
         <section class="section-card">
-          <h2>Blind Spots</h2>
+          <h2>$section_blindspots</h2>
           <div class="stack-list">$blindspot_cards</div>
         </section>
       </section>
 
-      <section class="section-card">
-        <h2>Pressure and Decision Style</h2>
+      <section id="people" class="section-card">
+        <div class="section-head">
+          <h2>$section_people</h2>
+          <p>$people_note</p>
+        </div>
+        <div class="people-grid">$people_cards</div>
+      </section>
+
+      <section id="pressure" class="section-card">
+        <h2>$section_pressure</h2>
         <div class="stack-list">$pressure_cards</div>
       </section>
 
-      <section class="section-card">
-        <h2>Evidence Chain</h2>
+      <section id="evidence" class="section-card">
+        <h2>$section_evidence</h2>
         <div class="stack-list">$evidence_cards</div>
       </section>
 
-      <section class="section-card">
-        <h2>Why Not The Adjacent Type</h2>
+      <section id="adjacent" class="section-card">
+        <h2>$section_adjacent</h2>
         <div class="stack-list">$adjacent_cards</div>
       </section>
 
-      <section class="section-card">
-        <h2>Uncertainty and Follow-Up</h2>
+      <section id="uncertainty" class="section-card">
+        <h2>$section_uncertainty</h2>
         <div class="stack-list">$uncertainty_cards</div>
       </section>
 
@@ -72,5 +98,101 @@ $dimension_cards
         <p>$footer_note</p>
       </footer>
     </main>
+
+    <script>
+      const reportActions = $action_payload;
+      const buttons = document.querySelectorAll(".action-button");
+
+      function rememberDefaultLabel(button) {
+        if (!button.dataset.defaultLabel) {
+          button.dataset.defaultLabel = button.textContent;
+        }
+      }
+
+      function flashLabel(button, label) {
+        rememberDefaultLabel(button);
+        button.textContent = label;
+        window.setTimeout(() => {
+          button.textContent = button.dataset.defaultLabel;
+        }, 1600);
+      }
+
+      function downloadBlob(blob, filename) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1200);
+      }
+
+      buttons.forEach((button) => rememberDefaultLabel(button));
+
+      document.querySelector('[data-action="download-html"]')?.addEventListener("click", () => {
+        const htmlDoc = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        downloadBlob(new Blob([htmlDoc], { type: "text/html;charset=utf-8" }), reportActions.fileBase + ".html");
+      });
+
+      document.querySelector('[data-action="export-pdf"]')?.addEventListener("click", () => {
+        window.print();
+      });
+
+      document.querySelector('[data-action="share"]')?.addEventListener("click", async (event) => {
+        const button = event.currentTarget;
+        const shareData = {
+          title: reportActions.pageTitle,
+          text: reportActions.shareText,
+        };
+        if (window.location.protocol !== "file:") {
+          shareData.url = window.location.href;
+        }
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (error) {
+            if (error && error.name === "AbortError") {
+              return;
+            }
+          }
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          const payload = shareData.url ? shareData.text + "\n" + shareData.url : shareData.text;
+          await navigator.clipboard.writeText(payload);
+          flashLabel(button, reportActions.copiedLabel);
+        }
+      });
+
+      /* Scroll-spy: highlight the nav link matching the current viewport section */
+      (function () {
+        const links = document.querySelectorAll(".sidebar-link");
+        const ids = Array.from(links).map(function (a) { return a.getAttribute("href"); });
+        const sections = ids.map(function (id) { return document.querySelector(id); }).filter(Boolean);
+
+        function update() {
+          var current = "";
+          for (var i = sections.length - 1; i >= 0; i--) {
+            if (sections[i].getBoundingClientRect().top <= 120) {
+              current = ids[i];
+              break;
+            }
+          }
+          links.forEach(function (link) {
+            if (link.getAttribute("href") === current) {
+              link.classList.add("is-active");
+            } else {
+              link.classList.remove("is-active");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", update, { passive: true });
+        update();
+      })();
+    </script>
   </body>
 </html>
