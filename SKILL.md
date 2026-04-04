@@ -13,7 +13,7 @@ metadata:
   openclaw:
     commands:
       - command: mbti-report
-        description: 🧠 基于已授权历史数据生成 MBTI 报告。
+        description: Generate an MBTI report from authorized historical data.
   clawdbot:
     emoji: "🧠"
     requires:
@@ -30,7 +30,7 @@ This package is a **skill**. The public handoff line for other agents lives in `
 
 Primary entry points:
 
-- trigger phrases: `分析我的 MBTI`, `性格分析`, `type me`
+- trigger phrases: `MBTI`, `personality analysis`, `type me`
 - skill command: `mbti-report`
 
 Minimal runtime requirement:
@@ -46,7 +46,7 @@ ln -s /absolute/path/to/mbti "$CODEX_HOME/skills/mbti"
 Start an analysis by invoking the skill in chat:
 
 ```text
-分析我的 MBTI，只读取我授权的记忆和历史会话
+Analyze my MBTI using only my authorized memory and session history
 ```
 
 For agents and maintainers:
