@@ -53,6 +53,8 @@ def context_note(flags: Dict[str, bool]) -> str:
 
 def source_day(record: Dict) -> str:
     timestamp = record.get("timestamp") or ""
+    if isinstance(timestamp, (int, float)):
+        timestamp = str(timestamp)
     return timestamp[:10] if timestamp else "unknown-day"
 
 
