@@ -459,13 +459,32 @@ def render_html(analysis: Dict, evidence_pool: Dict, quote_mode: str, asset_dir:
     )
 
 
-def write_reports(analysis: Dict, evidence_pool: Dict, output_dir: Path, quote_mode: str = "summary") -> None:
+def open_html_report(html_path: Path) -> None:
+    """Open the HTML report in the default browser."""
+    import subprocess
+    import sys
+
+    html_path = html_path.resolve()
+    if sys.platform == "darwin":
+        subprocess.Popen(["open", str(html_path)])
+    elif sys.platform.startswith("linux"):
+        subprocess.Popen(["xdg-open", str(html_path)])
+    elif sys.platform == "win32":
+        subprocess.Popen(["cmd", "/c", "start", "", str(html_path)])
+    else:
+        print(f"Cannot auto-open on {sys.platform}; open manually: {html_path}")
+
+
+def write_reports(analysis: Dict, evidence_pool: Dict, output_dir: Path, quote_mode: str = "summary", auto_open: bool = False) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     asset_dir = Path(__file__).resolve().parent.parent / "assets"
     markdown = render_markdown(analysis, evidence_pool, quote_mode)
     html_doc = render_html(analysis, evidence_pool, quote_mode, asset_dir)
+    html_path = output_dir / "report.html"
     (output_dir / "report.md").write_text(markdown, encoding="utf-8")
-    (output_dir / "report.html").write_text(html_doc, encoding="utf-8")
+    html_path.write_text(html_doc, encoding="utf-8")
+    if auto_open:
+        open_html_report(html_path)
 
 
 def main() -> None:
@@ -476,6 +495,7 @@ def main() -> None:
     parser.add_argument("--quote-mode", choices=["summary", "none"], default="summary", help="How much to quote from evidence.")
     parser.add_argument("--debug-preview", action="store_true", help="Render a bundled preview fixture without depending on analysis_result.json or evidence_pool.json.")
     parser.add_argument("--debug-type", choices=sorted(TYPE_FUNCTIONS.keys()), default="INTP", help="Type code to use when --debug-preview is enabled.")
+    parser.add_argument("--open", action="store_true", help="Open the HTML report in the default browser after rendering.")
     args = parser.parse_args()
 
     if args.debug_preview:
@@ -490,7 +510,8 @@ def main() -> None:
         evidence_pool = load_json(resolve_path(args.evidence_pool))
 
     output_dir = resolve_path(args.output_dir)
-    write_reports(analysis, evidence_pool, output_dir, args.quote_mode)
+    auto_open = getattr(args, "open", False)
+    write_reports(analysis, evidence_pool, output_dir, args.quote_mode, auto_open=auto_open)
 
 
 if __name__ == "__main__":

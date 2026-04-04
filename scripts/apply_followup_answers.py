@@ -181,7 +181,7 @@ def main() -> None:
     write_json(output_dir / "followup_answers.json", answers_payload(answers, prompt_map))
     write_json(output_dir / "evidence_pool.json", evidence_payload)
     write_json(output_dir / "analysis_result.json", updated_analysis)
-    write_reports(updated_analysis, evidence_payload, output_dir, args.quote_mode)
+    write_reports(updated_analysis, evidence_payload, output_dir, args.quote_mode, auto_open=True)
 
 
 if __name__ == "__main__":

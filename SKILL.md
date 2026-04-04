@@ -224,8 +224,11 @@ python3 {baseDir}/scripts/render_report.py \
   --analysis ./.mbti-reports/<timestamp>/analysis_result.json \
   --evidence-pool ./.mbti-reports/<timestamp>/evidence_pool.json \
   --output-dir ./.mbti-reports/<timestamp> \
-  --quote-mode summary
+  --quote-mode summary \
+  --open
 ```
+
+Add `--open` to automatically open the HTML report in the default browser after rendering.
 
 This creates:
 
