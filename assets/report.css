@@ -42,32 +42,32 @@ body {
   display: flex;
 }
 
-body.theme-nt {
-  --family: #32557c;
-  --family-soft: rgba(50, 85, 124, 0.12);
-  --family-soft-strong: rgba(50, 85, 124, 0.22);
-  --family-deep: #1d3351;
+body.theme-analyst {
+  --family: #6d4b60;
+  --family-soft: rgba(109, 75, 96, 0.12);
+  --family-soft-strong: rgba(109, 75, 96, 0.22);
+  --family-deep: #452b3d;
 }
 
-body.theme-nf {
-  --family: #2f7c72;
-  --family-soft: rgba(47, 124, 114, 0.13);
-  --family-soft-strong: rgba(47, 124, 114, 0.22);
+body.theme-diplomat {
+  --family: #307860;
+  --family-soft: rgba(48, 120, 96, 0.13);
+  --family-soft-strong: rgba(48, 120, 96, 0.22);
   --family-deep: #1f514b;
 }
 
-body.theme-st {
+body.theme-sentinel {
+  --family: #3b8c8b;
+  --family-soft: rgba(59, 140, 139, 0.13);
+  --family-soft-strong: rgba(59, 140, 139, 0.22);
+  --family-deep: #23605e;
+}
+
+body.theme-explorer {
   --family: #8a6428;
   --family-soft: rgba(138, 100, 40, 0.13);
   --family-soft-strong: rgba(138, 100, 40, 0.22);
   --family-deep: #5d4419;
-}
-
-body.theme-sf {
-  --family: #9a5a4e;
-  --family-soft: rgba(154, 90, 78, 0.13);
-  --family-soft-strong: rgba(154, 90, 78, 0.22);
-  --family-deep: #6e3f36;
 }
 
 a {

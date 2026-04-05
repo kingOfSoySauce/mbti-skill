@@ -474,6 +474,21 @@ def family_for_type(type_code: str) -> str:
     }.get(middle, "nt")
 
 
+def theme_for_type(type_code: str) -> str:
+    """Map a type code to the 16Personalities-style visual role theme."""
+    if len(type_code) != 4:
+        return "analyst"
+    if type_code[1:3] == "NT":
+        return "analyst"
+    if type_code[1:3] == "NF":
+        return "diplomat"
+    if type_code[1] == "S" and type_code[3] == "J":
+        return "sentinel"
+    if type_code[1] == "S" and type_code[3] == "P":
+        return "explorer"
+    return "analyst"
+
+
 def family_label(type_code: str) -> str:
     return {
         "nt": "Analytical Temperament",

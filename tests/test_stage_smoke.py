@@ -131,6 +131,7 @@ class StageSmokeTests(unittest.TestCase):
             report_html = (out_dir / "report.html").read_text(encoding="utf-8")
             report_md = (out_dir / "report.md").read_text(encoding="utf-8")
             self.assertIn('<html lang="en"', report_html.lower())
+            self.assertIn('class="theme-analyst"', report_html)
             self.assertIn(f"People With {analysis['final_type']}", report_html)
             self.assertNotIn("These examples are for pattern calibration only.", report_html)
             self.assertIn('data-action="download-html"', report_html)
