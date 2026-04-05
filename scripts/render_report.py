@@ -1300,6 +1300,8 @@ def render_html(analysis: Dict, evidence_pool: Dict, quote_mode: str, asset_dir:
         download_html=report_text(locale, "download_html"),
         export_pdf=report_text(locale, "export_pdf"),
         share_label=report_text(locale, "share"),
+        github_url="https://github.com/kingOfSoySauce/mbti-skill",
+        clawhub_url="https://clawhub.ai/kingofsoysauce/mbti-analyzer",
         family_label=localize_family_label(analysis["final_type"], locale),
         type_code=analysis["final_type"],
         type_label=localize_type_label(analysis["final_type"], locale),
