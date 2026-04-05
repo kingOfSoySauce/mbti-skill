@@ -27,14 +27,27 @@ $nav_links
       </div>
     </aside>
 
+    <div class="hero-compact-bar" aria-hidden="true">
+      <div class="hero-compact-badge">$badge_svg</div>
+      <div class="hero-compact-copy">
+        <span class="hero-compact-code">$type_code</span>
+        <span class="hero-compact-label">$type_label</span>
+      </div>
+    </div>
+
     <main class="page-shell">
       <section class="hero-card">
         <div class="hero-badge">$badge_svg</div>
         <div class="hero-copy">
-          <p class="eyebrow">$family_label</p>
-          <h1>$type_code <span>$type_label</span></h1>
-          <p class="confidence">$confidence_label</p>
-          <p class="snapshot">$snapshot</p>
+          <p class="hero-family eyebrow">$family_label</p>
+          <h1>
+            <span class="hero-type-code">$type_code</span>
+            <span class="hero-type-label">$type_label</span>
+          </h1>
+          <div class="hero-supporting-copy">
+            <p class="confidence">$confidence_label</p>
+            <p class="snapshot">$snapshot</p>
+          </div>
         </div>
       </section>
 
@@ -48,7 +61,6 @@ $dimension_cards
       <section id="people" class="section-card">
         <div class="section-head">
           <h2>$section_people</h2>
-          <p>$people_note</p>
         </div>
         <div class="people-grid">$people_cards</div>
       </section>
@@ -192,6 +204,51 @@ $dimension_cards
 
         window.addEventListener("scroll", update, { passive: true });
         update();
+      })();
+
+      (function () {
+        const heroCard = document.querySelector(".hero-card");
+        const heroCompactBar = document.querySelector(".hero-compact-bar");
+        const pageShell = document.querySelector(".page-shell");
+        if (!heroCard || !heroCompactBar || !pageShell) return;
+
+        let compactStart = 140;
+        let compactEnd = 260;
+
+        function clamp(value, min, max) {
+          return Math.min(max, Math.max(min, value));
+        }
+
+        function computeThreshold() {
+          const heroHeight = heroCard.offsetHeight || 0;
+          const heroTop = heroCard.getBoundingClientRect().top + window.scrollY;
+          const shellRect = pageShell.getBoundingClientRect();
+          const shellStyles = window.getComputedStyle(pageShell);
+          const shellPaddingLeft = parseFloat(shellStyles.paddingLeft || "0") || 0;
+          const compactLeft = shellRect.left + shellPaddingLeft;
+          const compactWidth = Math.max(0, shellRect.width - shellPaddingLeft);
+          const fadeLead = Math.max(48, Math.min(160, Math.round(heroHeight * 0.22)));
+          const fadeRange = Math.max(72, Math.min(180, Math.round(heroHeight * 0.3)));
+
+          heroCompactBar.style.left = compactLeft + "px";
+          heroCompactBar.style.width = compactWidth + "px";
+          compactStart = heroTop + fadeLead;
+          compactEnd = compactStart + fadeRange;
+        }
+
+        function updateHeroState() {
+          const progress = clamp((window.scrollY - compactStart) / Math.max(1, compactEnd - compactStart), 0, 1);
+          document.documentElement.style.setProperty("--hero-compact-progress", progress.toFixed(4));
+          document.body.classList.toggle("is-hero-compact", progress > 0.98);
+        }
+
+        computeThreshold();
+        window.addEventListener("resize", function () {
+          computeThreshold();
+          updateHeroState();
+        });
+        window.addEventListener("scroll", updateHeroState, { passive: true });
+        updateHeroState();
       })();
     </script>
   </body>

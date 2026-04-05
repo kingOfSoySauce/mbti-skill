@@ -117,6 +117,7 @@ class StageSmokeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             tempdir = Path(temp)
             paths = self.prepare("render", tempdir)
+            analysis = json.loads(Path(paths["analysis_result"]).read_text(encoding="utf-8"))
             out_dir = tempdir / "render-output"
             self.run_script(
                 "render_report.py",
@@ -130,11 +131,17 @@ class StageSmokeTests(unittest.TestCase):
             report_html = (out_dir / "report.html").read_text(encoding="utf-8")
             report_md = (out_dir / "report.md").read_text(encoding="utf-8")
             self.assertIn('<html lang="en"', report_html.lower())
-            self.assertIn("People With Similar Type", report_html)
+            self.assertIn(f"People With {analysis['final_type']}", report_html)
+            self.assertNotIn("These examples are for pattern calibration only.", report_html)
             self.assertIn('data-action="download-html"', report_html)
             self.assertIn('href="#profile"', report_html)
+            self.assertIn('class="hero-type-code"', report_html)
+            self.assertIn("is-hero-compact", report_html)
             self.assertNotIn("<h3>E/I</h3>", report_html)
             self.assertIn("Introversion", report_html)
+            self.assertIn("https://www.google.com/search?q=", report_html)
+            self.assertNotIn("stablecharacter.com/personality-database", report_html)
+            self.assertIn(f"## People With {analysis['final_type']}", report_md)
             self.assertIn("# MBTI Report:", report_md)
 
     def test_render_stage_auto_language_prefers_zh(self) -> None:
@@ -167,7 +174,8 @@ class StageSmokeTests(unittest.TestCase):
             report_html = (out_dir / "report.html").read_text(encoding="utf-8")
             self.assertIn('<html lang="zh-cn"', report_html.lower())
             self.assertIn("偏好画像", report_html)
-            self.assertIn("同型名人参考", report_html)
+            self.assertIn(f"{analysis['final_type']} 同型名人", report_html)
+            self.assertNotIn("这一组名人只用于帮助你快速校准气质轮廓", report_html)
 
     def test_followup_stage(self) -> None:
         with tempfile.TemporaryDirectory() as temp:

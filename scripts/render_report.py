@@ -10,6 +10,7 @@ import html
 from pathlib import Path
 from string import Template
 from typing import Dict, List
+from urllib.parse import quote_plus
 
 from mbti_common import (
     AXIS_SIDES,
@@ -121,6 +122,8 @@ DEBUG_FAMILY_STRENGTHS = {
         ("Grounded warmth", "The page copy assumes a reader who stays close to what is humanly immediate and actionable."),
     ],
 }
+
+PERSON_SEARCH_BASE_URL = "https://www.google.com/search?q="
 
 DEBUG_FAMILY_BLINDSPOTS = {
     "nt": [
@@ -332,8 +335,7 @@ REPORT_TEXT = {
         "section_functions": "Function Validation",
         "section_strengths": "Strengths",
         "section_blindspots": "Blind Spots",
-        "section_people": "People With Similar Type",
-        "people_note": "These examples are for pattern calibration only. Public MBTI typings are debated and were not used to infer your result.",
+        "section_people": "People With {type_code}",
         "section_pressure": "Pressure and Decision Style",
         "section_evidence": "Evidence Chain",
         "section_adjacent": "Why Not The Adjacent Type",
@@ -387,8 +389,7 @@ REPORT_TEXT = {
         "section_functions": "功能验证",
         "section_strengths": "优势",
         "section_blindspots": "盲区",
-        "section_people": "同型名人参考",
-        "people_note": "这一组名人只用于帮助你快速校准气质轮廓。公开 MBTI 标注本身存在争议，也没有参与本次推断。",
+        "section_people": "{type_code} 同型名人",
         "section_pressure": "压力与决策风格",
         "section_evidence": "证据链",
         "section_adjacent": "为什么不是相邻类型",
@@ -627,6 +628,17 @@ def normalize_person_key(name: str) -> str:
     return "".join(char for char in base if char.isalnum())
 
 
+def build_person_search_url(person: Dict, fallback_type: str) -> str:
+    query_parts = [
+        person.get("name", "").strip(),
+        (person.get("mbti_type") or fallback_type).strip(),
+    ]
+    query = " ".join(part for part in query_parts if part)
+    if not query:
+        return ""
+    return f"{PERSON_SEARCH_BASE_URL}{quote_plus(query)}"
+
+
 def load_famous_people(type_code: str) -> List[Dict]:
     data_path = Path(__file__).resolve().parent.parent / "references" / "famous_people.json"
     data = load_json(data_path)
@@ -639,7 +651,9 @@ def load_famous_people(type_code: str) -> List[Dict]:
         if not name or not key or key in seen:
             continue
         seen.add(key)
-        unique.append(person)
+        prepared = dict(person)
+        prepared["detail_url"] = build_person_search_url(prepared, type_code)
+        unique.append(prepared)
         if len(unique) == 6:
             break
     return unique
@@ -1198,7 +1212,7 @@ def render_markdown(analysis: Dict, evidence_pool: Dict, quote_mode: str, report
         lines.append(f"- {item['summary']} [{source_ref_text(item['source_ref'])}]")
         if quote_mode == "summary":
             lines.append(f"  {'Quote' if locale == 'en' else '摘录'}: {item['excerpt']}")
-    lines.extend(["", f"## {report_text(locale, 'section_people')}"])
+    lines.extend(["", f"## {report_text(locale, 'section_people', type_code=analysis['final_type'])}"])
     for person in load_famous_people(analysis["final_type"]):
         lines.append(f"- {person['name']} ({person.get('domain', 'Other')}): {person.get('description', '')}")
     lines.extend(["", f"## {report_text(locale, 'section_adjacent')}"])
@@ -1292,8 +1306,7 @@ def render_html(analysis: Dict, evidence_pool: Dict, quote_mode: str, asset_dir:
         section_functions=report_text(locale, "section_functions"),
         section_strengths=report_text(locale, "section_strengths"),
         section_blindspots=report_text(locale, "section_blindspots"),
-        section_people=report_text(locale, "section_people"),
-        people_note=report_text(locale, "people_note"),
+        section_people=report_text(locale, "section_people", type_code=analysis["final_type"]),
         section_pressure=report_text(locale, "section_pressure"),
         section_evidence=report_text(locale, "section_evidence"),
         section_adjacent=report_text(locale, "section_adjacent"),
