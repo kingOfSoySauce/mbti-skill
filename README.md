@@ -45,6 +45,8 @@ Discover identifies candidate source categories across your workspace and OpenCl
 
 ## Report Preview
 
+Try the [interactive demo](https://kingofsoysauce.github.io/mbti-skill/) for a live sample report.
+
 ### Overview
 
 Overview of the generated report

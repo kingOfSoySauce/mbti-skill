@@ -45,6 +45,8 @@ mbti-report
 
 ## 报告预览
 
+试一试[在线演示](https://kingofsoysauce.github.io/mbti-skill/)查看实时报告样例。
+
 以下截图展示的是英文版报告界面。skill 同样支持生成中文版报告，只是当前还没有补充中文版截图。
 
 ### 总览
