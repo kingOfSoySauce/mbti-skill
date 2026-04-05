@@ -710,57 +710,22 @@ body.is-hero-compact .hero-card {
   }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 680px) {
   .report-sidebar {
-    position: relative;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    padding: 14px 18px;
-    border-right: none;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .sidebar-brand {
-    margin-bottom: 0;
-  }
-
-  .sidebar-jump {
-    flex: 1;
-    min-width: 160px;
-    order: 3;
-    width: 100%;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 8px;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-  }
-
-  .sidebar-nav::-webkit-scrollbar {
     display: none;
   }
 
-  .sidebar-actions {
-    flex-direction: row;
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-    gap: 8px;
-  }
-
   .page-shell {
-    width: min(calc(100vw - 24px), var(--page-max-width));
+    width: calc(100vw - 32px);
     padding-left: 0;
-    margin: 16px auto 36px;
+    margin: 16px auto 48px;
   }
 
-  .hero-card,
+  .hero-card {
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+  }
+
   .dimension-grid,
   .double-grid,
   .people-grid,
@@ -770,54 +735,10 @@ body.is-hero-compact .hero-card {
   }
 
   .hero-badge {
-    min-height: 180px;
-  }
-
-  .hero-compact-bar {
-    top: 12px;
-    left: 12px;
-    width: calc(100vw - 24px);
-    gap: 14px;
-    padding: 10px 14px;
-  }
-
-  .hero-compact-badge {
-    width: 64px;
-    height: 64px;
-    flex-basis: 64px;
-  }
-
-  .hero-compact-copy {
-    gap: 10px;
-  }
-
-  .hero-compact-code {
-    font-size: clamp(1.35rem, 5.4vw, 1.8rem);
-  }
-
-  .hero-compact-label {
-    font-size: clamp(0.88rem, 3.2vw, 1rem);
-  }
-
-  .section-head {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 680px) {
-  .report-sidebar {
-    display: none;
-  }
-
-  .page-shell {
-    width: calc(100vw - 32px);
-    margin: 16px auto 48px;
-  }
-
-  .hero-badge {
     aspect-ratio: 1;
     height: auto;
+    max-width: 220px;
+    max-height: 220px;
   }
 
   .hero-github-link {
@@ -861,8 +782,34 @@ body.is-hero-compact .hero-card {
   }
 
   .hero-compact-bar {
+    top: 12px;
     left: 16px !important;
     width: calc(100vw - 32px) !important;
+    gap: 14px;
+    padding: 10px 14px;
+  }
+
+  .hero-compact-badge {
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+  }
+
+  .hero-compact-copy {
+    gap: 10px;
+  }
+
+  .hero-compact-code {
+    font-size: clamp(1.35rem, 5.4vw, 1.8rem);
+  }
+
+  .hero-compact-label {
+    font-size: clamp(0.88rem, 3.2vw, 1rem);
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
