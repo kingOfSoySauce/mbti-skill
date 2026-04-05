@@ -2,7 +2,7 @@
 
 [简体中文](docs/zh-CN/README.md) | [English](README.md)
 
-An [OpenClaw](https://openclaw.ai/) skill that infers your MBTI personality type from user-allowed conversation history, memory, and workspace notes without a questionnaire.
+Infer your MBTI type from your conversation history with agents and related context, greatly reducing the time spent answering questions. Currently supports [OpenClaw](https://openclaw.ai/) skills.
 
 ## Quick Start
 

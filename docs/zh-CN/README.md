@@ -2,7 +2,7 @@
 
 [English](../../README.md) | [简体中文](README.md)
 
-这是一个 [OpenClaw](https://openclaw.ai/) skill，无需问卷，即可基于你允许使用的对话历史、记忆和工作区笔记推断 MBTI 类型。
+基于你与 agents 的对话历史等信息推断 MBTI 类型，大幅减少填写问题的时间，目前支持 [OpenClaw](https://openclaw.ai/) skills。
 
 ## 快速开始
 
