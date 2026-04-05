@@ -129,8 +129,45 @@ class StageSmokeTests(unittest.TestCase):
             )
             report_html = (out_dir / "report.html").read_text(encoding="utf-8")
             report_md = (out_dir / "report.md").read_text(encoding="utf-8")
-            self.assertIn("<html", report_html.lower())
+            self.assertIn('<html lang="en"', report_html.lower())
+            self.assertIn("People With Similar Type", report_html)
+            self.assertIn('data-action="download-html"', report_html)
+            self.assertIn('href="#profile"', report_html)
+            self.assertNotIn("<h3>E/I</h3>", report_html)
+            self.assertIn("Introversion", report_html)
             self.assertIn("# MBTI Report:", report_md)
+
+    def test_render_stage_auto_language_prefers_zh(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            tempdir = Path(temp)
+            paths = self.prepare("render", tempdir)
+            analysis = json.loads(Path(paths["analysis_result"]).read_text(encoding="utf-8"))
+            evidence = json.loads(Path(paths["evidence_pool"]).read_text(encoding="utf-8"))
+
+            for payload in (analysis, evidence):
+                for source in payload["source_summary"]["sources"].values():
+                    source["language_mix"] = "zh"
+                    source["sample_preview"] = ["我通常会先想清楚框架，再和 agent 一起收敛结论。"]
+
+            analysis_path = tempdir / "analysis-zh.json"
+            evidence_path = tempdir / "evidence-zh.json"
+            analysis_path.write_text(json.dumps(analysis, ensure_ascii=False, indent=2), encoding="utf-8")
+            evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            out_dir = tempdir / "render-output-zh"
+            self.run_script(
+                "render_report.py",
+                "--analysis",
+                str(analysis_path),
+                "--evidence-pool",
+                str(evidence_path),
+                "--output-dir",
+                str(out_dir),
+            )
+            report_html = (out_dir / "report.html").read_text(encoding="utf-8")
+            self.assertIn('<html lang="zh-cn"', report_html.lower())
+            self.assertIn("偏好画像", report_html)
+            self.assertIn("同型名人参考", report_html)
 
     def test_followup_stage(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
@@ -157,4 +194,3 @@ class StageSmokeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

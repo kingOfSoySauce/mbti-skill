@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import html
 from pathlib import Path
@@ -586,6 +587,22 @@ def enhance_badge_svg(badge_path: Path, type_code: str) -> str:
         "</text>"
     )
     return svg.replace("</svg>", insert + "</svg>")
+
+
+def build_hero_badge(asset_dir: Path, type_code: str, family_key: str) -> str:
+    """Return an <img> tag with base64-encoded type image, or fall back to SVG badge."""
+    type_lower = type_code.lower()
+    for ext in ("png", "jpeg", "jpg", "webp"):
+        img_path = asset_dir / "images" / f"{type_lower}.{ext}"
+        if img_path.is_file():
+            data = img_path.read_bytes()
+            mime = "image/png" if ext == "png" else "image/jpeg"
+            b64 = base64.b64encode(data).decode("ascii")
+            return (
+                f'<img src="data:{mime};base64,{b64}" '
+                f'alt="{html.escape(type_code)}" class="hero-image" />'
+            )
+    return enhance_badge_svg(asset_dir / "type-badges" / f"{family_key}.svg", type_code)
 
 
 def evidence_lookup(evidence_pool: List[Dict]) -> Dict[str, Dict]:
@@ -1184,7 +1201,7 @@ def render_html(analysis: Dict, evidence_pool: Dict, quote_mode: str, asset_dir:
     locale = infer_report_language(analysis, evidence_pool, report_language)
     template = Template((asset_dir / "report-template.html").read_text(encoding="utf-8"))
     embedded_css = (asset_dir / "report.css").read_text(encoding="utf-8")
-    badge_svg = enhance_badge_svg(asset_dir / "type-badges" / f"{analysis['family_key']}.svg", analysis["final_type"])
+    badge_svg = build_hero_badge(asset_dir, analysis["final_type"], analysis["family_key"])
     lookup = evidence_lookup(evidence_pool["evidence_pool"])
 
     narrative_paragraphs = build_type_narrative_paragraphs(analysis, locale)
