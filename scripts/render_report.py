@@ -360,6 +360,8 @@ REPORT_TEXT = {
         "no_uncertainty": "No major unresolved axis stood out after evidence pooling.",
         "followup_prompt": "If you want to refine the result, the best next question is:",
         "source_reference": "Source reference",
+        "hero_people_link": "See Similar Types →",
+        "person_detail_link": "↗",
     },
     "zh": {
         "html_lang": "zh-CN",
@@ -413,6 +415,8 @@ REPORT_TEXT = {
         "no_uncertainty": "目前没有哪条轴向在证据汇总后仍明显悬而未决。",
         "followup_prompt": "如果要继续收敛结果，最值得追问的问题是：",
         "source_reference": "来源引用",
+        "hero_people_link": "查看同型名人 →",
+        "person_detail_link": "↗",
     },
 }
 def report_text(locale: str, key: str, **kwargs: str) -> str:
@@ -530,8 +534,13 @@ def infer_report_language(analysis: Dict, evidence_pool: Dict, requested: str = 
     return "zh" if weights["zh"] > weights["en"] else "en"
 
 
-def metric_option_html(side: str, pct: int, locale: str, is_selected: bool) -> str:
-    class_name = "metric-option is-selected" if is_selected else "metric-option"
+def metric_option_html(side: str, pct: int, locale: str, is_selected: bool, is_weaker: bool = False) -> str:
+    classes = ["metric-option"]
+    if is_selected:
+        classes.append("is-selected")
+    if is_weaker:
+        classes.append("is-weaker")
+    class_name = " ".join(classes)
     return (
         f'<div class="{class_name}">'
         f'<span class="metric-option-code">{html.escape(side)}</span>'
@@ -550,11 +559,11 @@ def metric_card(axis_result: Dict, locale: str) -> str:
     other_pct = axis_result["right_pct"] if selected == axis_result["left"] else axis_result["left_pct"]
     left_class = "meter-segment is-selected" if selected == axis_result["left"] else "meter-segment"
     right_class = "meter-segment is-selected" if selected == axis_result["right"] else "meter-segment"
+    left_weaker = axis_result["left_pct"] < axis_result["right_pct"]
     return (
         '<article class="metric-card">'
         '<div class="metric-head">'
         "<div>"
-        f'<p class="card-eyebrow">{html.escape(report_text(locale, "selected_preference"))}</p>'
         f"<h3>{html.escape(side_label(selected, locale))}</h3>"
         f'<p class="metric-meta">{html.escape(axis_label(axis_result["axis"], locale))} · '
         f'{html.escape(report_text(locale, "confidence"))}: {html.escape(localize_axis_confidence(axis_result["confidence"], locale))}</p>'
@@ -562,8 +571,8 @@ def metric_card(axis_result: Dict, locale: str) -> str:
         f'<div class="metric-badge">{html.escape(selected)}</div>'
         "</div>"
         '<div class="metric-options">'
-        f'{metric_option_html(axis_result["left"], axis_result["left_pct"], locale, selected == axis_result["left"])}'
-        f'{metric_option_html(axis_result["right"], axis_result["right_pct"], locale, selected == axis_result["right"])}'
+        f'{metric_option_html(axis_result["left"], axis_result["left_pct"], locale, selected == axis_result["left"], left_weaker)}'
+        f'{metric_option_html(axis_result["right"], axis_result["right_pct"], locale, selected == axis_result["right"], not left_weaker)}'
         "</div>"
         '<div class="meter meter-split">'
         f'<span class="{left_class}" style="width:{axis_result["left_pct"]}%"></span>'
@@ -573,7 +582,6 @@ def metric_card(axis_result: Dict, locale: str) -> str:
         f'<div class="note-block"><p class="note-label">{html.escape(report_text(locale, "support_signals"))}</p><p>{html.escape(support)}</p></div>'
         f'<div class="note-block is-muted"><p class="note-label">{html.escape(report_text(locale, "counter_pattern"))}</p><p>{html.escape(counter)}</p></div>'
         "</div>"
-        f'<p class="metric-summary">{html.escape(selected)} {selected_pct}% · {html.escape(other)} {other_pct}%</p>'
         "</article>"
     )
 
@@ -1123,6 +1131,12 @@ def person_card_html(person: Dict, locale: str) -> str:
             f'<a href="{html.escape(person["detail_url"])}" target="_blank" rel="noreferrer">{title_html}</a>'
         )
     parts = ['<article class="person-card">']
+    if person.get("detail_url"):
+        parts.append(
+            f'<a class="person-card-link" href="{html.escape(person["detail_url"])}" target="_blank" rel="noreferrer">'
+            f'{html.escape(report_text(locale, "person_detail_link"))}'
+            f'</a>'
+        )
     if person.get("domain"):
         parts.append(f'<p class="card-eyebrow">{html.escape(person["domain"])}</p>')
     parts.append(f"<h3>{title_html}</h3>")
@@ -1136,10 +1150,10 @@ def person_card_html(person: Dict, locale: str) -> str:
 def build_nav_links(locale: str) -> str:
     entries = [
         ("#profile", report_text(locale, "nav_profile")),
+        ("#people", report_text(locale, "nav_people")),
         ("#narrative", report_text(locale, "nav_narrative")),
         ("#functions", report_text(locale, "nav_functions")),
         ("#strengths", report_text(locale, "nav_strengths")),
-        ("#people", report_text(locale, "nav_people")),
         ("#pressure", report_text(locale, "nav_pressure")),
         ("#evidence", report_text(locale, "nav_evidence")),
         ("#adjacent", report_text(locale, "nav_adjacent")),
