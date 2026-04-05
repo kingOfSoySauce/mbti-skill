@@ -37,7 +37,9 @@ Discover identifies candidate source categories across your workspace and OpenCl
 - Candidate source categories may include workspace long-term memory (`MEMORY.md`), workspace daily notes (`memory/*.md`), OpenClaw sessions, memory index records, task metadata, and cron metadata.
 - The skill is designed to exclude sensitive or low-signal paths such as `.env`, `credentials/*`, `identity/*`, approval files, generic config files, and runtime logs.
 - It only reads sources you allow for the current run.
+- The analysis pipeline runs locally and does not upload your source content or MBTI results to external services during report generation.
 - Reports may include short excerpts from allowed sources unless quoting is disabled.
+- Code review is welcome if you want to verify the data boundary yourself.
 
 ## Report Preview
 
