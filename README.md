@@ -14,9 +14,10 @@ openclaw skills install mbti-analyzer
 
 # Run in OpenClaw
 mbti-report
+
+# You can also trigger it with `MBTI`, `personality analysis`, `type me`, or `分析我的 MBTI`.
 ```
 
-You can also trigger it with `MBTI`, `personality analysis`, `type me`, or `分析我的 MBTI`.
 
 ### For OpenClaw
 

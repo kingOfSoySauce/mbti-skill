@@ -14,9 +14,10 @@ openclaw skills install mbti-analyzer
 
 # 在 OpenClaw 中运行
 mbti-report
+
+# 你也可以用这些触发词：`MBTI`、`personality analysis`、`type me`、`分析我的 MBTI`
 ```
 
-你也可以用这些触发词：`MBTI`、`personality analysis`、`type me`、`分析我的 MBTI`
 
 ### 给 OpenClaw
 
