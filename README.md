@@ -1,118 +1,74 @@
 # MBTI Skill
 
-An [OpenClaw](https://openclaw.ai/) skill that infers your MBTI personality type from your authorized conversation history, memory, and workspace notes — no questionnaire required.
+[简体中文](docs/zh-CN/README.md) | [English](README.md)
+
+An [OpenClaw](https://openclaw.ai/) skill that infers your MBTI personality type from user-allowed conversation history, memory, and workspace notes without a questionnaire.
+
+## Quick Start
+
+### For People
+
+```bash
+# Install
+openclaw skills install mbti-analyzer
+
+# Run in OpenClaw
+mbti-report
+```
+
+You can also trigger it with `MBTI`, `personality analysis`, `type me`, or `分析我的 MBTI`.
+
+### For OpenClaw
+
+```text
+Install this skill and analyze my MBTI: openclaw skills install mbti-analyzer
+```
 
 ## How It Works
 
 ```
-Discover → Ingest → Evidence Pool → Inference → Report
+Discover → Analyze → Report
 ```
 
-1. **Discover** — scans your workspace and OpenClaw home for candidate data sources
-2. **Authorize** — shows you what's available and asks which sources to use
-3. **Ingest** — extracts structured records from authorized sources only
-4. **Evidence** — builds a scored, traceable evidence pool (removes noise, flags pseudo-signals)
-5. **Infer** — runs MBTI inference against the evidence pool, not raw history
-6. **Report** — renders `report.html` + `report.md` with type, confidence, and evidence
+Discover identifies candidate source categories across your workspace and OpenClaw state. Analyze uses only the sources you allow, builds a traceable evidence pool, and asks follow-up questions only when uncertainty remains. Report renders the final HTML and Markdown outputs.
 
-## Install
+## Trust And Scope
 
-One-command install via [ClawHub](https://clawhub.ai):
+- Candidate source categories may include workspace long-term memory (`MEMORY.md`), workspace daily notes (`memory/*.md`), OpenClaw sessions, memory index records, task metadata, and cron metadata.
+- The skill is designed to exclude sensitive or low-signal paths such as `.env`, `credentials/*`, `identity/*`, approval files, generic config files, and runtime logs.
+- It only reads sources you allow for the current run.
+- Reports may include short excerpts from allowed sources unless quoting is disabled.
 
-```
-openclaw skills install mbti-analyzer
-```
+## Report Preview
 
-Or tell your OpenClaw agent:
+### Overview
 
-```
-Install this skill and analyze my MBTI: openclaw skills install mbti-analyzer
-```
+Overview of the generated report
 
-From source:
+<p align="center">
+  <img src="docs/assets/shared/report-overview.png" alt="Overview" width="600" />
+</p>
 
-```bash
-git clone https://github.com/kingOfSoySauce/mbti-skill.git
-openclaw skills install ./mbti-skill
-```
+### Narrative And Validation
 
-Local development:
+<p align="center">
+  <img src="docs/assets/shared/report-narrative-validation.png" alt="Narrative and validation" width="600" />
+</p>
 
-```bash
-ln -s "$(pwd)" "$CODEX_HOME/skills/mbti"
-```
+## What You Get
 
-## Usage
-
-Trigger phrases: `MBTI`, `personality analysis`, `type me`, `分析我的 MBTI`
-
-Or run the command:
-
-```
-mbti-report
-```
-
-### Pipeline (CLI)
-
-```bash
-# 1. Discover sources
-python3 scripts/discover_sources.py \
-  --workspace-root . \
-  --openclaw-home ~/.openclaw \
-  --output /tmp/mbti-manifest.json
-
-# 2. Ingest authorized sources
-python3 scripts/ingest_all_content.py \
-  --manifest /tmp/mbti-manifest.json \
-  --approved-source-types all \
-  --output-dir ./.mbti-reports/run
-
-# 3. Build evidence pool
-python3 scripts/build_evidence_pool.py \
-  --raw-records ./.mbti-reports/run/raw_records.jsonl \
-  --source-summary ./.mbti-reports/run/source_summary.json \
-  --output ./.mbti-reports/run/evidence_pool.json
-
-# 4. Infer MBTI
-python3 scripts/infer_mbti.py \
-  --evidence-pool ./.mbti-reports/run/evidence_pool.json \
-  --source-summary ./.mbti-reports/run/source_summary.json \
-  --output ./.mbti-reports/run/analysis_result.json
-
-# 5. Render report
-python3 scripts/render_report.py \
-  --analysis ./.mbti-reports/run/analysis_result.json \
-  --evidence-pool ./.mbti-reports/run/evidence_pool.json \
-  --output-dir ./.mbti-reports/run
-```
-
-Output: `report.html` (primary), `report.md`, `analysis_result.json`, `evidence_pool.json`
-
-## Testing
-
-```bash
-# Run all stage smoke tests
-python -m pytest tests/test_stage_smoke.py -v
-
-# Single stage
-python -m pytest tests/test_stage_smoke.py::StageSmokeTests::test_infer_stage -v
-
-# Prepare a fixture for manual inspection
-python3 scripts/prepare_stage_fixture.py --stage infer --output-dir /tmp/mbti-test
-```
-
-## Design Principles
-
-- **Authorization first** — never read source content without user confirmation
-- **Evidence, not raw history** — MBTI is inferred from a curated evidence pool, not raw chat logs
-- **Transparent reasoning** — every scored signal is traceable back to its source
-- **Non-clinical** — results are a best-fit hypothesis, not a diagnosis
+- A best-fit MBTI type hypothesis with explicit confidence.
+- A preference profile that explains how each axis was scored.
+- A traceable evidence chain instead of a raw-history guess.
+- Adjacent-type comparison that shows why nearby alternatives did not win.
+- Uncertainty and follow-up prompts when the evidence stays close.
+- Automatic English/Chinese report rendering based on the source language mix.
 
 ## References
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](SKILL.md) | Full execution contract and script reference |
+| [`SKILL.md`](SKILL.md) | Skill contract, maintainer notes, and stage workflow details |
 | [`references/analysis_framework.md`](references/analysis_framework.md) | Four-preference + cognitive-function analysis model |
 | [`references/evidence_rubric.md`](references/evidence_rubric.md) | Signal strength scoring and pseudo-signal filtering |
 | [`references/report_copy_contract.md`](references/report_copy_contract.md) | Copy and tone rules for generated reports |
