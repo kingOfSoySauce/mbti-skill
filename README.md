@@ -4,7 +4,7 @@
 
 Infer your MBTI from your conversation history with agents and related context, greatly reducing the time spent answering questions. Currently supports [OpenClaw](https://openclaw.ai/) skills.
 
-Data safety: let your own [OpenClaw](https://openclaw.ai/) analyze your MBTI locally. No data is uploaded anywhere else.
+Data safety: this skill analyzes your MBTI locally inside your own [OpenClaw](https://openclaw.ai/). No data is uploaded anywhere else.
 
 ## Quick Start
 
