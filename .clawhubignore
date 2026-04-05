@@ -10,4 +10,6 @@ AGENTS.md
 IMPLEMENTATION_PLAN.md
 output/
 scripts/clawhub_release.py
+scripts/dev_fixtures.py
 tests/
+docs/
