@@ -1278,6 +1278,8 @@ def render_html(analysis: Dict, evidence_pool: Dict, quote_mode: str, asset_dir:
         ensure_ascii=False,
     )
 
+    favicon_b64 = base64.b64encode((asset_dir / "images" / "favicon.png").read_bytes()).decode("ascii")
+
     return template.substitute(
         html_lang=report_text(locale, "html_lang"),
         page_title=report_text(locale, "page_title", type_code=analysis["final_type"]),
@@ -1323,6 +1325,7 @@ def render_html(analysis: Dict, evidence_pool: Dict, quote_mode: str, asset_dir:
         uncertainty_cards=uncertainty,
         footer_note=report_text(locale, "footer_note"),
         action_payload=action_payload,
+        FAVICON_BASE64=favicon_b64,
     )
 
 

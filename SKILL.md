@@ -1,5 +1,5 @@
 ---
-name: mbti
+name: mbti-analyzer
 description: Analyze a user's MBTI from authorized OpenClaw memory, session history, and workspace notes. Use when the user asks for MBTI analysis, personality inference without a questionnaire, an evidence-backed personality report, or a structured type hypothesis from historical conversations.
 version: 0.1.0
 triggers:

@@ -17,10 +17,23 @@ Discover → Ingest → Evidence Pool → Inference → Report
 
 ## Install
 
-For other agents, paste this line:
+One-command install via [ClawHub](https://clawhub.ai):
 
 ```
-Install this skill and analyze my MBTI: https://github.com/kingOfSoySauce/mbti-skill
+openclaw skills install mbti-analyzer
+```
+
+Or tell your OpenClaw agent:
+
+```
+Install this skill and analyze my MBTI: openclaw skills install mbti-analyzer
+```
+
+From source:
+
+```bash
+git clone https://github.com/kingOfSoySauce/mbti-skill.git
+openclaw skills install ./mbti-skill
 ```
 
 Local development:

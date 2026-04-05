@@ -1,9 +1,13 @@
 .DS_Store
 .mbti-reports/
+.clawhub-dist/
 .pytest_cache/
 __pycache__/
 *.py[cod]
 *.crdownload
 ref/
 AGENTS.md
+IMPLEMENTATION_PLAN.md
 output/
+scripts/clawhub_release.py
+tests/
