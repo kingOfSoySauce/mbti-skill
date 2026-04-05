@@ -2,7 +2,7 @@
 
 [English](../../README.md) | [简体中文](README.md)
 
-基于你与 agents 的对话历史等信息推断 MBTI 类型，大幅减少填写问题的时间，目前支持 [OpenClaw](https://openclaw.ai/) skills。
+基于与 agents 的对话历史等信息推断你的 MBTI，大幅减少填写问题的时间，目前支持 [OpenClaw](https://openclaw.ai/) skills。
 
 ## 快速开始
 

@@ -2,7 +2,7 @@
 
 [简体中文](docs/zh-CN/README.md) | [English](README.md)
 
-Infer your MBTI type from your conversation history with agents and related context, greatly reducing the time spent answering questions. Currently supports [OpenClaw](https://openclaw.ai/) skills.
+Infer your MBTI from your conversation history with agents and related context, greatly reducing the time spent answering questions. Currently supports [OpenClaw](https://openclaw.ai/) skills.
 
 ## Quick Start
 
